@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赵俊瑜的第一个网站</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B1F23'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='bold' fill='%23F5A623' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#F7F3EC;
+    --paper-2:#EFE8DA;
+    --ink:#1B1F23;
+    --ink-soft:#5A5F66;
+    --accent:#D97A0B;
+    --accent-dark:#B56609;
+    --line:#D8CDB8;
+    --shadow:0 18px 40px -18px rgba(27,31,35,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Noto Sans SC",system-ui,"Microsoft YaHei",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:"Noto Serif SC",Georgia,"Songti SC",serif}
+
+  /* ===== 顶部导航 ===== */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 6vw;
+    background:rgba(247,243,236,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;padding:8px 4px;margin:-8px -4px}
+  .brand .mark{
+    width:30px;height:30px;border-radius:7px;background:var(--ink);
+    color:var(--accent);display:grid;place-items:center;
+    font-family:Georgia,serif;font-weight:700;font-size:15px;
+  }
+  .nav-links{display:flex;gap:26px;list-style:none}
+  .nav-links a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--accent)}
+  @media(max-width:640px){.nav-links{display:none}}
+
+  /* ===== Hero ===== */
+  .hero{
+    min-height:78vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:60px 6vw;
+    position:relative;overflow:hidden;
+  }
+  .hero .deco{
+    position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;z-index:0;
+  }
+  .deco.a{width:340px;height:340px;background:#F4C870;top:-120px;left:-90px}
+  .deco.b{width:300px;height:300px;background:#F0A868;bottom:-130px;right:-80px}
+  .hero-inner{position:relative;z-index:1}
+  .hello{
+    display:inline-block;font-size:14px;letter-spacing:3px;color:var(--accent-dark);
+    font-weight:500;margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(44px,9vw,84px);font-weight:900;line-height:1.15;letter-spacing:1px;
+  }
+  .hero h1 .accent{color:var(--accent)}
+  .hero .tagline{
+    margin:20px auto 34px;max-width:560px;font-size:clamp(16px,2.4vw,20px);
+    color:var(--ink-soft);font-weight:300;
+  }
+  .btn{
+    display:inline-block;padding:13px 34px;border-radius:999px;
+    background:var(--accent);color:#fff;text-decoration:none;font-weight:600;font-size:16px;
+    box-shadow:var(--shadow);transition:transform .18s,background .2s;
+  }
+  .btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none;margin-left:12px}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .scroll-hint{margin-top:56px;color:var(--ink-soft);font-size:13px;letter-spacing:2px}
+  .scroll-hint svg{vertical-align:-2px;margin-right:6px}
+
+  /* ===== 区块 ===== */
+  section{padding:80px 6vw}
+  .wrap{max-width:980px;margin:0 auto}
+  .sec-head{margin-bottom:44px}
+  .sec-kicker{font-size:14px;letter-spacing:3px;color:var(--accent-dark);font-weight:600}
+  .sec-head h2{font-size:clamp(28px,5vw,38px);font-weight:900;margin-top:10px}
+  .sec-head p{color:var(--ink-soft);max-width:640px;margin-top:12px}
+
+  /* ===== 关于 ===== */
+  .about{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
+  .about-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    padding:30px;box-shadow:var(--shadow);
+  }
+  .about-card .avatar{
+    width:84px;height:84px;border-radius:50%;background:var(--ink);
+    color:var(--accent);display:grid;place-items:center;font-size:34px;
+    font-family:Georgia,serif;font-weight:700;margin-bottom:18px;
+  }
+  .about-card h3{font-size:22px;font-weight:900}
+  .about-card .role{color:var(--accent-dark);font-size:14px;margin-top:4px;letter-spacing:1px}
+  .about-text p{color:var(--ink-soft);font-weight:300}
+  .about-text p+p{margin-top:16px}
+
+  /* ===== 三件小事 ===== */
+  .things{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .thing{
+    border:1px solid var(--line);border-radius:16px;padding:28px;background:var(--paper);
+    transition:transform .2s,border-color .2s;
+  }
+  .thing:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .thing .num{font-family:Georgia,serif;font-size:15px;color:var(--accent);font-weight:700}
+  .thing .ico{width:40px;height:40px;margin:14px 0 12px;color:var(--accent)}
+  .thing h3{font-size:19px;font-weight:700;margin-bottom:8px}
+  .thing p{font-size:14.5px;color:var(--ink-soft);font-weight:300}
+  @media(max-width:860px){.things{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}}
+
+  /* ===== 时间轴 ===== */
+  .timeline{--date:96px;--axis:40px;position:relative;max-width:720px;margin:0 auto}
+  .timeline::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--date) + var(--axis)/2);width:2px;transform:translateX(-50%);background:var(--line)}
+  .tl-row{display:grid;grid-template-columns:var(--date) var(--axis) 1fr;padding:14px 0}
+  .tl-time{font-family:Georgia,serif;color:var(--accent-dark);font-size:14px;text-align:right;padding-right:16px;padding-top:3px}
+  .tl-axis{display:flex;justify-content:center;align-items:center}
+  .tl-dot{width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--paper-2);box-sizing:border-box}
+  .tl-content h3{font-size:18px;font-weight:700}
+  .tl-content p{font-size:14.5px;color:var(--ink-soft);font-weight:300}
+  @media(max-width:480px){.timeline{--date:72px;--axis:32px}}
+
+  /* ===== 结尾 CTA ===== */
+  .cta{background:var(--ink);color:var(--paper);text-align:center;padding:80px 6vw}
+  .cta h2{font-size:clamp(26px,5vw,38px);font-weight:900}
+  .cta p{color:#B9BEC6;max-width:520px;margin:16px auto 30px;font-weight:300}
+  .cta .btn{background:var(--accent)}
+  .cta .btn:hover{background:var(--accent-dark)}
+
+  /* ===== Footer ===== */
+  footer{padding:28px 6vw;text-align:center;color:var(--ink-soft);font-size:13.5px;border-top:1px solid var(--line)}
+  footer .sig{margin-top:4px;font-family:"Noto Serif SC",serif;color:var(--ink)}
+
+  @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ===== 导航 ===== -->
+<nav class="nav">
+  <a href="#top" class="brand" style="text-decoration:none;color:inherit">
+    <span class="mark">Z</span><span>赵俊瑜</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">关于我</a></li>
+    <li><a href="#things">我在做的事</a></li>
+    <li><a href="#journey">成长轨迹</a></li>
+    <li><a href="#contact">联系我</a></li>
+  </ul>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero" id="top">
+  <div class="deco a"></div>
+  <div class="deco b"></div>
+  <div class="hero-inner">
+    <span class="hello">MY FIRST WEBSITE</span>
+    <h1>你好，我是<span class="accent">赵俊瑜</span></h1>
+    <p class="tagline">这是我亲手做的第一个网站。在这里，我把想法变成看得见的页面，也记录自己一步一步长大的样子。</p>
+    <div>
+      <a href="#about" class="btn">认识我</a>
+      <a href="#contact" class="btn ghost">打个招呼</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    向下滚动
+  </div>
+</header>
+
+<!-- ===== 关于我 ===== -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="avatar">Z</div>
+        <h3>赵俊瑜</h3>
+        <div class="role">网站新手 · 正在上路</div>
+      </div>
+      <div class="about-text">
+        <p>这是我第一次从零开始做出一个属于自己的页面。虽然它还很简单，但对现在的我来说，每一次修改、每一行代码，都是一次新鲜的尝试。</p>
+        <p>我希望这个网站能一直陪着我，见证我从「不会」到「会」，从好奇到热爱。这里放得下我喜欢的东西，也放得下我想说的话。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 我在做的事 ===== -->
+<section id="things">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">正在做的事</div>
+      <h2>我想学点什么</h2>
+      <p>第一个网站只是个起点。下面是我接下来想慢慢尝试的方向。</p>
+    </div>
+    <div class="things">
+      <div class="thing">
+        <div class="num">01</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10M7 13h6"/></svg>
+        <h3>学前端</h3>
+        <p>把页面做得更漂亮、更好看，让每一次打开都有惊喜。</p>
+      </div>
+      <div class="thing">
+        <div class="num">02</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h3>坚持练习</h3>
+        <p>不怕改错，每天进步一点点，把好习惯变成习惯。</p>
+      </div>
+      <div class="thing">
+        <div class="num">03</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5L12 15.6 7 18.2l1-5.5-4-3.9L9.5 8z"/></svg>
+        <h3>保持好奇</h3>
+        <p>对世界多一点好奇，也多一点耐心，慢慢变强。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 成长轨迹 ===== -->
+<section class="about" id="journey">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center">
+      <div class="sec-kicker">成长轨迹</div>
+      <h2>一步步走过来</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-time">起点</div>
+        <div class="tl-axis"><span class="tl-dot"></span></div>
+        <div class="tl-content"><h3>有了这个念头</h3><p>想拥有一个属于自己的、可以随时打开的小天地。</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-time">第一步</div>
+        <div class="tl-axis"><span class="tl-dot"></span></div>
+        <div class="tl-content"><h3>动手做了第一版</h3><p>写下第一行内容，页面第一次在浏览器里亮起来。</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-time">进行中</div>
+        <div class="tl-axis"><span class="tl-dot"></span></div>
+        <div class="tl-content"><h3>继续加油</h3><p>一点点打磨，让它长成我期待的样子。未完待续。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 结尾 ===== -->
+<section class="cta" id="contact">
+  <h2>想认识我吗？</h2>
+  <p>这个网站刚起步，如果你有想聊的话题、想给的建议，随时告诉我。我会把它当作最好的礼物。</p>
+  <a href="#top" class="btn">回到顶部</a>
+</section>
+
+<footer>
+  <div>赵俊瑜 · 第一个网站</div>
+  <div class="sig">把想法变成页面，从这里开始。</div>
+</footer>
+
+<script>
+  // 顶部导航吸顶时点击锚点平滑滚动
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+    });
+  });
+</script>
+</body>
+</html>
